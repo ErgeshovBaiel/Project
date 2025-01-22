@@ -9,6 +9,7 @@
 }
 body {
     font-family: "Montserrat", serif;
+    background-color: #131416;
 }
 .custom-pagination {
     position: absolute;
