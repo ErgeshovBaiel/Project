@@ -36,7 +36,7 @@ const Footer = () => {
 
         <div className='w-[255px] '>
           <h4 class="w-[80px] h-[20px] font-[Montserrat] text-[18px] font-medium mb-5">Поддержка</h4>
-          <p class="w-[255px] h-[56px] font-montserrat text-base font-normal ">Мы всегда готовы вам помочь.
+          <p class="w-[300px] h-[56px] font-montserrat text-base font-normal ">Мы всегда готовы вам помочь.
              Наши операторы онлайн 24/7</p>
           <div className='flex gap-[20px] mt-5'>
             {icons.map((icon, index) => {

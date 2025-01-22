@@ -49,7 +49,7 @@ const CategorySection = () => {
                     >
                         {category.map(item => {
                             return <SwiperSlide key={item.id}>
-                              <div className="pt-[150px]">
+                              <div className="pt-[60px]">
                               <div className="app-container">
                                 <div className="w-[310px] text-white  flex pl-[90px] items-start justify-center flex-col h-[170px] rounded-[10px] bg-[#1A1A1A]">
                                     <h3 className="text-[20px]">{item.name}</h3>
