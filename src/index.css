@@ -7,6 +7,10 @@
     width: 1180px;
     margin: 0 auto;
 }
+.my-container {
+    width: 1400px;
+    margin: 0 auto;
+}
 body {
     font-family: "Montserrat", serif;
     background-color: #131416;
@@ -32,4 +36,30 @@ body {
 .text-sm {
     font-size: 0.75rem;
   }
+
+  .custom-pagination2 {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .pagination-btn {
+    width: 8px;
+    height: 8px;
+    background-color: #aaa;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .pagination-btn:hover {
+    transform: scale(1.2);
+  }
+  
+  .pagination-btn.active {
+    background-color: #EF4234;
+  }
+  
   

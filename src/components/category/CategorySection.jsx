@@ -32,8 +32,8 @@ const CategorySection = () => {
     return (
         <div className="pb-[150px] text-white">
             <div className="app-container">
-                <h3>Смотрите фильмы, которые вам нравятся</h3>
-                <p>На нашем сайте собрано огромное количество фильмов и сериалов на любой вкус</p>
+                <h3 className="w-[550px] h-[29px] font-[Montserrat] font-semibold text-xl">Смотрите фильмы, которые вам нравятся</h3>
+                <p className="w-[421px] h-[52px] font-[Montserrat] font-normal text-base text-[#979797] mt-4">На нашем сайте собрано огромное количество фильмов и сериалов на любой вкус</p>
                 <div>
                     <Swiper
                         slidesPerView={3}
@@ -42,7 +42,7 @@ const CategorySection = () => {
                             clickable: true,
                         }}
                         autoplay={{
-                            delay: 2000
+                            delay: 2500
                         }}
                         modules={[Autoplay]}
                         className="mySwiper"

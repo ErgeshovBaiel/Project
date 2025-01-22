@@ -1,7 +1,6 @@
 import axios from '../axios'
 
 class MovieService {
-
   async fetchAllMovies () {
     try {
       const { data, status } = await axios.get('discover/movie?language=ru')
@@ -25,16 +24,16 @@ class MovieService {
       console.log(err)
     }
   }
-async fetchMovieByName(movieName){
+  async fetchMovieByName (movieName) {
     try {
-      const {data, status} = await axios.get(`search/movie`,{
+      const { data, status } = await axios.get(`search/movie`, {
         params: {
           query: movieName,
           language: 'ru'
         }
       })
-      if(!status === 200) {
-        throw new Error("Error movie fetching movie genre list")
+      if (!status === 200) {
+        throw new Error('Error movie fetching movie genre list')
       }
       console.log(data)
       return data
@@ -54,7 +53,7 @@ async fetchMovieByName(movieName){
       console.log(error)
     }
   }
-
+  // Новинки
   async fetchNewMovie () {
     try {
       const { data, status } = await axios.get(`trending/movie/week`, {
@@ -71,7 +70,7 @@ async fetchMovieByName(movieName){
       console.error(err)
     }
   }
-
+  //Популярное
   async fetchPopularMovies () {
     try {
       const { data, status } = await axios.get(`movie/popular`, {
@@ -88,7 +87,7 @@ async fetchMovieByName(movieName){
       console.error(err)
     }
   }
-
+  //Смотрят сейчас
   async fetchMovieNowWatching () {
     try {
       const { data, status } = await axios.get(`movie/now_playing`, {
@@ -107,6 +106,8 @@ async fetchMovieByName(movieName){
   }
 
   // recomendate
+
+  //Топ 10
   async fetchMovieTopRated () {
     try {
       const { data, status } = await axios.get(`movie/top_rated`, {
@@ -123,7 +124,7 @@ async fetchMovieByName(movieName){
       console.error(err)
     }
   }
-
+  //Скоро на Cinemax
   async fetchMovieUpComing () {
     try {
       const { data, status } = await axios.get(`movie/upcoming`, {
@@ -141,7 +142,6 @@ async fetchMovieByName(movieName){
     }
   }
 }
-
 
 const movieService = new MovieService()
 export default movieService
