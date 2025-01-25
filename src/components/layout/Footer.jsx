@@ -7,7 +7,7 @@ const icons = [TelIcon, EmailIcon, TelegramIcon]
 
 const Footer = () => {
   return (
-    <div className='bg-[#1a1a1a]'>
+    <div className='bg-[#1a1a1a] mt-[150px]'>
       <div className='app-container py-[48px] text-white flex justify-between'>
         <div>
           <h4 class="w-[80px] h-[20px] font-[Montserrat] text-[18px] font-medium mb-5">Cinemax</h4>

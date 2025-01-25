@@ -33,6 +33,11 @@ const MovieFilter = () => {
     }
   }, [])
 
+  useEffect(() => {
+    fetchMovies('Новинки')
+    setActiveBtn('Новинки')
+  }, [])
+
   const fetchMovies = item => {
     setIsLoading(true)
     if (item === 'Новинки') {
@@ -68,6 +73,10 @@ const MovieFilter = () => {
     fetchMovies(item)
   }
 
+  const formatVoteAverage = voteAverage => {
+    return voteAverage.toFixed(1)
+  }
+
   return (
     <div className='pb-[80px]'>
       <div className='app-container flex gap-[75px] items-center px-[75px] rounded-[10px] bg-[#1A1A1A] text-white'>
@@ -89,52 +98,48 @@ const MovieFilter = () => {
         {isLoading ? (
           <h3 className='text-white'>Loading...</h3>
         ) : (
-          <>
-            <Swiper
-              modules={[Navigation, Autoplay]}
-              navigation
-              spaceBetween={40}
-              slidesPerView={windowWidth < 640 ? 1 : windowWidth < 1024 ? 2 : 4}
-              autoplay={{
-                delay: 2000,
-                disableOnInteraction: false
-              }}
-              onSlideChange={swiper => setActiveIndex(swiper.activeIndex)}
-            >
-              {movies.map(film => {
-                const imgUrl = 'https://image.tmdb.org/t/p/original/'
-                return (
-                  <SwiperSlide key={film.id}>
-                    <div className='flex flex-col items-center justify-center'>
-                      <img
-                        className='rounded-[10px]'
-                        width='225'
-                        height='300'
-                        src={imgUrl + film.poster_path}
-                        alt={film.title}
-                      />
-                      <h2 className='text-white mt-5 text-[18px] font-medium'>{film.title}</h2>
-                    </div>
-                  </SwiperSlide>
-                )
-              })}
-            </Swiper>
+          <Swiper
+            modules={[Navigation, Autoplay]}
+            navigation={{
+              prevEl: '.swiper-button-prev',
+              nextEl: '.swiper-button-next',
+            }}
+            spaceBetween={40}
+            slidesPerView={windowWidth < 640 ? 1 : windowWidth < 1024 ? 2 : 4}
+            autoplay={{
+              delay: 2000,
+              disableOnInteraction: false
+            }}
+          >
+            {movies.map(film => {
+              const imgUrl = 'https://image.tmdb.org/t/p/original/'
+              return (
+                <SwiperSlide key={film.id}>
+                  <div className='flex flex-col items-center justify-center '>
+                    <button className='absolute text-white mb-[372px] rounded-bl-[5px] mr-32 rounded-br-[5px] w-[35px] h-[35px] bg-[#EF4234]'>
+                      {formatVoteAverage(film.vote_average)}
+                    </button>
 
-            <div className="mt-10">
-              <div className='custom-pagination2 flex justify-center'>
-                {movies.map((_, index) => (
-                  <button
-                    key={index}
-                    className={`pagination-btn ${
-                      activeIndex === index ? 'active' : ''
-                    }`}
-                    onClick={() => setActiveIndex(index)}
-                  />
-                ))}
-              </div>
-            </div>
-          </>
+                    <img
+                      className='rounded-[10px]'
+                      width='225'
+                      height='300'
+                      src={imgUrl + film.poster_path}
+                      alt={film.title}
+                    />
+                    <h2 className='text-white mt-5 text-[17px] font-medium'>
+                      {film.title}
+                    </h2>
+                    <h3 className='text-white'>{film.release_date.slice(0, 4)}</h3>
+                  </div>
+                </SwiperSlide>
+              )
+            })}
+          </Swiper>
         )}
+        
+        <div className='swiper-button-prev'></div>
+        <div className='swiper-button-next'></div>
       </div>
     </div>
   )

@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules'
+import { Navigation, Pagination, Mousewheel, Keyboard, Autoplay } from 'swiper/modules'
 import Spinner from '../spinner/Spinner'
 import Button from '../UI/Button/Button'
 import PlayIcon from '../../assets/play.svg'
@@ -54,9 +54,10 @@ const HeroSection = () => {
           mousewheel={true}
           keyboard={true}
           autoplay={{
-            delay: 5500
+            delay: 2000,
+            disableOnInteraction: false
           }}
-          modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+          modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}
           className='mySwiper h-full bg-gradient-to-t from-[#040404] to-transparen'
           onSlideChange={swiper => {
             setBgImage(films[swiper.activeIndex]?.backdrop_path)

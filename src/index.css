@@ -62,4 +62,31 @@ body {
     background-color: #EF4234;
   }
   
-  
+  .navigation-container {
+  display: flex;
+  gap: 20px;
+  background-color: #1a1a1a;
+  padding: 20px 50px;
+  border-radius: 10px;
+}
+
+.navigation-item {
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 10px 15px;
+  border: none;
+  background: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.navigation-item:hover {
+  color: #ef4234;
+}
+
+.navigation-item.active {
+  border-bottom: 2px solid #ef4234;
+  color: #ef4234;
+}
