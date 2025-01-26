@@ -16,9 +16,9 @@ const App = () => {
                       index={route2.index}
                       path={route2.path}
                       element={route2.element}
-                    />
-                  )
-                })}
+                      />
+                    )
+                  })}
               </Route>
             )
           })}
