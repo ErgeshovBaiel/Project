@@ -5,6 +5,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/autoplay'
 import { Navigation, Autoplay } from 'swiper/modules'
 import movieService from '../../service/movieServie'
+import { useNavigate } from 'react-router-dom'
 
 const filterNames = [
   'Новинки',
@@ -16,6 +17,7 @@ const filterNames = [
 ]
 
 const MovieFilter = () => {
+  const navigate = useNavigate()
   const [activeBtn, setActiveBtn] = useState(null)
   const [movies, setMovies] = useState([])
   const [isLoading, setIsLoading] = useState(false)
@@ -102,12 +104,12 @@ const MovieFilter = () => {
             modules={[Navigation, Autoplay]}
             navigation={{
               prevEl: '.swiper-button-prev',
-              nextEl: '.swiper-button-next',
+              nextEl: '.swiper-button-next'
             }}
             spaceBetween={40}
             slidesPerView={windowWidth < 640 ? 1 : windowWidth < 1024 ? 2 : 4}
             autoplay={{
-              delay: 2000,
+              delay: 2500,
               disableOnInteraction: false
             }}
           >
@@ -115,13 +117,18 @@ const MovieFilter = () => {
               const imgUrl = 'https://image.tmdb.org/t/p/original/'
               return (
                 <SwiperSlide key={film.id}>
-                  <div className='flex flex-col items-center justify-center '>
+                  <div
+                    onClick={() => {
+                      navigate(`/movie-detail/${film.id}`)
+                    }}
+                    className='flex flex-col items-center justify-center '
+                  >
                     <button className='absolute text-white mb-[372px] rounded-bl-[5px] mr-32 rounded-br-[5px] w-[35px] h-[35px] bg-[#EF4234]'>
                       {formatVoteAverage(film.vote_average)}
                     </button>
 
                     <img
-                      className='rounded-[10px]'
+                      className='rounded-[10px] cursor-pointer'
                       width='225'
                       height='300'
                       src={imgUrl + film.poster_path}
@@ -130,14 +137,16 @@ const MovieFilter = () => {
                     <h2 className='text-white mt-5 text-[17px] font-medium'>
                       {film.title}
                     </h2>
-                    <h3 className='text-white'>{film.release_date.slice(0, 4)}</h3>
+                    <h3 className='text-white'>
+                      {film.release_date.slice(0, 4)}
+                    </h3>
                   </div>
                 </SwiperSlide>
               )
             })}
           </Swiper>
         )}
-        
+
         <div className='swiper-button-prev'></div>
         <div className='swiper-button-next'></div>
       </div>

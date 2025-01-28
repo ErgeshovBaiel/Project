@@ -141,6 +141,23 @@ class MovieService {
       console.error(err)
     }
   }
+  async fetchMovieTrailers(id){
+    try {
+                const {data, status} = await axios.get(`movie/${id}/videos`,{
+                    params: {
+                        language: 'en'
+                    }
+                })
+                if(!status === 200) {
+                    throw new Error("Error movie fetching  popular movie  list")
+                }
+                console.log(data)
+                return data
+            } catch (err) {
+                console.error(err)
+            }
+        }
+    
 }
 
 const movieService = new MovieService()

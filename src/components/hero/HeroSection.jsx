@@ -23,7 +23,7 @@ const HeroSection = () => {
       .fetchAllMovies()
       .then(res => {
         console.log(res)
-        setFilms(res.results.slice(0,4))
+        setFilms(res.results.slice(0,5))
         setBgImage(res.results[0].backdrop_path)
       })
       .finally(() => {
@@ -54,7 +54,7 @@ const HeroSection = () => {
           mousewheel={true}
           keyboard={true}
           autoplay={{
-            delay: 2000,
+            delay: 2500,
             disableOnInteraction: false
           }}
           modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}

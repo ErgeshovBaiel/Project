@@ -5,6 +5,7 @@ import FavIcon from '../../assets/fav.svg'
 import { useParams } from 'react-router'
 import { useEffect, useState } from 'react'
 import movieService from '../../service/movieServie'
+import VideoSection from '../../components/VideoSection/VideoSection'
 
 const MovieDetailPage = () => {
   const { movieId } = useParams()
@@ -20,7 +21,7 @@ const MovieDetailPage = () => {
   if (Object.keys(movie).length === 0) {
     return (
       <div className='flex justify-center'>
-        <h1>Loading...</h1>
+        <h1 className="text-white">Loading...</h1>
       </div>
     )
   }
@@ -57,6 +58,8 @@ const MovieDetailPage = () => {
   let imgUrl = 'https://image.tmdb.org/t/p/original/'
 
   return (
+    <div>
+
     <div
       className='bg-cover  bg-center bg-no-repeat bg-gradient-to-b from-black to-[#131416]'
       style={{
@@ -111,6 +114,8 @@ const MovieDetailPage = () => {
 
         </div>
       </div>
+    </div>
+    <VideoSection id={movieId} />
     </div>
   )
 }
