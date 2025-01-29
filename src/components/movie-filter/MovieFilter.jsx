@@ -109,7 +109,7 @@ const MovieFilter = () => {
             spaceBetween={40}
             slidesPerView={windowWidth < 640 ? 1 : windowWidth < 1024 ? 2 : 4}
             autoplay={{
-              delay: 2500,
+              delay: 3000,
               disableOnInteraction: false
             }}
           >

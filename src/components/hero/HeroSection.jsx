@@ -54,7 +54,7 @@ const HeroSection = () => {
           mousewheel={true}
           keyboard={true}
           autoplay={{
-            delay: 2500,
+            delay: 3000,
             disableOnInteraction: false
           }}
           modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}

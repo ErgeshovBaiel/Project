@@ -48,7 +48,7 @@ const UpComing = () => {
           }}
           modules={[Pagination, Autoplay]}
           autoplay={{
-            delay: 2500, 
+            delay: 3000, 
             disableOnInteraction: true,
           }}
           className="mySwiper h-[500px]"

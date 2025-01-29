@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import Spinner from '../spinner/Spinner'
 import VideoCard from '../../components/video-card/VideoCard'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import './VideoSection.css'  // Өзгөчө CSS
+
 
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -31,13 +31,7 @@ const VideoSection = ({ id }) => {
         <Swiper
           cssMode={true}
           navigation={false}
-          pagination={{
-            el: '.custom-pagination3',  // Туура элемент экенине көз салыңыз
-            clickable: true,
-            renderBullet: (index, className) => {
-              return `<div class="${className}"></div>`;  // Өзгөчө буллет
-            },
-          }}
+          pagination={false}
           mousewheel={true}
           keyboard={true}
           slidesPerView={3}
@@ -48,15 +42,13 @@ const VideoSection = ({ id }) => {
           {data.map((video, index) => {
             return (
               <SwiperSlide key={video.id || index}>
-                <div className='movie-container2 flex gap-[30px] rounded-[20px]'>
+                <div className=' flex gap-[30px] rounded-[20px]'>
                   <VideoCard key={video.id || index} videoKey={video.key} />
                 </div>
               </SwiperSlide>
             )
           })}
         </Swiper>
-        {/* Өзгөчө пагинация */}
-        <div className="custom-pagination3"></div>  {/* Пагинация бул жерде көрүнүшү керек */}
       </div>
     </div>
   )
