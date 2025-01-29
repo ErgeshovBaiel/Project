@@ -3,8 +3,8 @@ import { useQuery } from '@tanstack/react-query'
 import Spinner from '../spinner/Spinner'
 import VideoCard from '../../components/video-card/VideoCard'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import './VideoSection.css'  // Өзгөчө CSS
 
-// Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
@@ -13,7 +13,7 @@ import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules'
 
 const VideoSection = ({ id }) => {
   const { data, isLoading } = useQuery({
-    queryKey: ['videos'],
+    queryKey: ['videolar'],
     queryFn: () => movieServie.fetchMovieTrailers(id),
     select: data => data.results
   })
@@ -26,12 +26,18 @@ const VideoSection = ({ id }) => {
 
   return (
     <div className='app-container text-white pt-[120px]'>
-      <h3  class="w-[131px] h-[29px] font-[Montserrat] text-[24px] font-semibold ml-[30px]">Трейлеры</h3>
+      <h3 className="w-[131px] h-[29px] font-[Montserrat] text-[24px] font-semibold ml-[30px]">Трейлерлер</h3>
       <div className='h-[350px]'>
         <Swiper
           cssMode={true}
           navigation={false}
-          pagination={true}
+          pagination={{
+            el: '.custom-pagination3',  // Туура элемент экенине көз салыңыз
+            clickable: true,
+            renderBullet: (index, className) => {
+              return `<div class="${className}"></div>`;  // Өзгөчө буллет
+            },
+          }}
           mousewheel={true}
           keyboard={true}
           slidesPerView={3}
@@ -42,13 +48,15 @@ const VideoSection = ({ id }) => {
           {data.map((video, index) => {
             return (
               <SwiperSlide key={video.id || index}>
-                <div className='flex gap-[30px] rounded-[20px]'>
+                <div className='movie-container2 flex gap-[30px] rounded-[20px]'>
                   <VideoCard key={video.id || index} videoKey={video.key} />
                 </div>
               </SwiperSlide>
             )
           })}
         </Swiper>
+        {/* Өзгөчө пагинация */}
+        <div className="custom-pagination3"></div>  {/* Пагинация бул жерде көрүнүшү керек */}
       </div>
     </div>
   )

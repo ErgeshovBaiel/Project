@@ -59,7 +59,7 @@ const UpComing = () => {
                 onClick={() => {
                   navigate(`/movie-detail/${item.id}`)
                 }}
-                className="movie-container w-[880px] h-[560px] ml-[190px] bg-[#1a1a1a] text-white">
+                className="movie-container w-[880px] h-[560px] ml-[190px] rounded-[10px] bg-[#1a1a1a] text-white">
                 <div className="flex">
                   <div className="ml-[-82px]">
                     <img
@@ -102,3 +102,4 @@ const UpComing = () => {
 };
 
 export default UpComing;
+

@@ -1,0 +1,32 @@
+.movie-container2 {
+    transition: transform 0.3s ease;
+  }
+  
+  .mySwiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .custom-pagination3 {
+    display: flex;
+    flex-direction: row; /* Горизонталдык багыт */
+    gap: 10px;
+    justify-content: center; /* Буллеттерди борборго жылдыруу */
+    margin-top: 20px; /* Үстүнөн кошумча аралык */
+  }
+  
+  .custom-pagination3 .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+  }
+  
+  .custom-pagination3 .swiper-pagination-bullet-active {
+    opacity: 1;
+    background-color: #EF4234;
+    width: 40px; /* Активдүү буллеттин туурасы */
+    height: 10px; 
+  }
