@@ -1,98 +1,100 @@
-import { useState, useEffect } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/autoplay'
-import { Navigation, Autoplay } from 'swiper/modules'
-import movieService from '../../service/movieServie'
-import { useNavigate } from 'react-router-dom'
-
-const filterNames = [
-  'Новинки',
-  'Популярное',
-  'Смотрят сейчас',
-  'Рекомендации',
-  'Топ 10',
-  'Скоро на Cinemax'
-]
+import { useTranslation } from 'react-i18next';
+import { useState, useEffect } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/autoplay';
+import { Navigation, Autoplay } from 'swiper/modules';
+import movieService from '../../service/movieServie';
+import { useNavigate } from 'react-router-dom';
 
 const MovieFilter = () => {
-  const navigate = useNavigate()
-  const [activeBtn, setActiveBtn] = useState(null)
-  const [movies, setMovies] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [activeBtn, setActiveBtn] = useState(null);
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const filterNames = [
+    t("New"),
+    t("Popular"),
+    t("Watch Now"),
+    t("Recommendations"),
+    t("Top 10"),
+    t("Coming soon on Cinemax")
+  ];
 
   useEffect(() => {
     const handleResize = () => {
-      setWindowWidth(window.innerWidth)
-    }
+      setWindowWidth(window.innerWidth);
+    };
 
-    window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
-    fetchMovies('Новинки')
-    setActiveBtn('Новинки')
-  }, [])
+    fetchMovies(filterNames[0]);
+    setActiveBtn(filterNames[0]);
+  }, []);
 
-  const fetchMovies = item => {
-    setIsLoading(true)
-    if (item === 'Новинки') {
+  const fetchMovies = (item) => {
+    setIsLoading(true);
+
+    if (item === t('New')) {
       movieService.fetchNewMovie().then(res => {
-        setMovies(res.results)
-        setIsLoading(false)
-      })
-    } else if (item === 'Популярное') {
+        setMovies(res.results);
+        setIsLoading(false);
+      });
+    } else if (item === t('Popular')) {
       movieService.fetchPopularMovies().then(res => {
-        setMovies(res.results)
-        setIsLoading(false)
-      })
-    } else if (item === 'Смотрят сейчас') {
+        setMovies(res.results);
+        setIsLoading(false);
+      });
+    } else if (item === t('Watch Now')) {
       movieService.fetchMovieNowWatching().then(res => {
-        setMovies(res.results)
-        setIsLoading(false)
-      })
-    } else if (item === 'Топ 10') {
+        setMovies(res.results);
+        setIsLoading(false);
+      });
+    } else if (item === t('Top 10')) {
       movieService.fetchMovieTopRated().then(res => {
-        setMovies(res.results)
-        setIsLoading(false)
-      })
-    } else if (item === 'Скоро на Cinemax') {
+        setMovies(res.results);
+        setIsLoading(false);
+      });
+    } else if (item === t('Coming soon on Cinemax')) {
       movieService.fetchMovieUpComing().then(res => {
-        setMovies(res.results)
-        setIsLoading(false)
-      })
+        setMovies(res.results);
+        setIsLoading(false);
+      });
     }
-  }
+  };
 
-  const handleOnClick = item => {
-    setActiveBtn(item)
-    fetchMovies(item)
-  }
+  const handleOnClick = (item) => {
+    setActiveBtn(item);
+    fetchMovies(item);
+  };
 
-  const formatVoteAverage = voteAverage => {
-    return voteAverage.toFixed(1)
-  }
+  const formatVoteAverage = (voteAverage) => {
+    return voteAverage.toFixed(1);
+  };
 
   return (
     <div className='pb-[80px]'>
       <div className='app-container flex gap-[75px] items-center px-[75px] rounded-[10px] bg-[#1A1A1A] text-white'>
-        {filterNames.map(item => {
-          const activeClass = item === activeBtn ? 'border-b border-[red]' : ''
+        {filterNames.map((item, index) => {
+          const activeClass = item === activeBtn ? 'border-b border-[red]' : '';
           return (
             <p
               onClick={() => handleOnClick(item)}
               className={`${activeClass} cursor-pointer py-[22px]`}
-              key={item}
+              key={index}
             >
               {item}
             </p>
-          )
+          );
         })}
       </div>
 
@@ -114,14 +116,14 @@ const MovieFilter = () => {
             }}
           >
             {movies.map(film => {
-              const imgUrl = 'https://image.tmdb.org/t/p/original/'
+              const imgUrl = 'https://image.tmdb.org/t/p/original/';
               return (
                 <SwiperSlide key={film.id}>
                   <div
                     onClick={() => {
-                      navigate(`/movie-detail/${film.id}`)
+                      navigate(`/movie-detail/${film.id}`);
                     }}
-                    className='flex flex-col items-center justify-center '
+                    className='flex flex-col items-center justify-center'
                   >
                     <button className='absolute text-white mb-[372px] rounded-bl-[5px] mr-32 rounded-br-[5px] w-[35px] h-[35px] bg-[#EF4234]'>
                       {formatVoteAverage(film.vote_average)}
@@ -142,7 +144,7 @@ const MovieFilter = () => {
                     </h3>
                   </div>
                 </SwiperSlide>
-              )
+              );
             })}
           </Swiper>
         )}
@@ -151,7 +153,7 @@ const MovieFilter = () => {
         <div className='swiper-button-next'></div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MovieFilter
+export default MovieFilter;

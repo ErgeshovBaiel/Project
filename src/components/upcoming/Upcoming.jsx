@@ -7,11 +7,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
-import './UpComing.css'; 
+import './UpComing.css';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom'
 
 
 const UpComing = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate()
   const [movie, setMovie] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -48,7 +50,7 @@ const UpComing = () => {
           }}
           modules={[Pagination, Autoplay]}
           autoplay={{
-            delay: 3000, 
+            delay: 3000,
             disableOnInteraction: true,
           }}
           className="mySwiper h-[500px]"
@@ -59,7 +61,7 @@ const UpComing = () => {
                 onClick={() => {
                   navigate(`/movie-detail/${item.id}`)
                 }}
-                className="movie-container w-[880px] h-[560px] ml-[190px] rounded-[10px] bg-[#1a1a1a] text-white">
+                className="movie-container w-[880px] h-[560px] ml-[190px]  bg-[#1a1a1a] text-white">
                 <div className="flex">
                   <div className="ml-[-82px]">
                     <img
@@ -88,7 +90,7 @@ const UpComing = () => {
                       {item.overview}
                     </p>
                     <Button className="py-[5px] cursor-pointer px-[20px] font-[Montserrat] text-[16px] font-medium">
-                      Смотреть
+                    {t('see')}
                     </Button>
                   </div>
                 </div>

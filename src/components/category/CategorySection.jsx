@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import movieService from "../../service/movieServie"
 import Spinner from "../spinner/Spinner"
-
+import { useTranslation } from 'react-i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -11,6 +11,7 @@ import { Autoplay } from "swiper/modules";
 
 
 const CategorySection = () => {
+    const { t } = useTranslation();
     const [category, setCategory] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
@@ -32,8 +33,8 @@ const CategorySection = () => {
     return (
         <div className="pb-[150px] text-white">
             <div className="app-container">
-                <h3 className="w-[550px] h-[29px] font-[Montserrat] font-semibold text-xl">Смотрите фильмы, которые вам нравятся</h3>
-                <p className="w-[421px] h-[52px] font-[Montserrat] font-normal text-base text-[#979797] mt-4">На нашем сайте собрано огромное количество фильмов и сериалов на любой вкус</p>
+                <h3 className="w-[550px] h-[29px] font-[Montserrat] font-semibold text-xl">{t('film')}</h3>
+                <p className="w-[421px] h-[52px] font-[Montserrat] font-normal text-base text-[#979797] mt-4">{t('film-P')}</p>
                 <div>
                     <Swiper
                         slidesPerView={3}
