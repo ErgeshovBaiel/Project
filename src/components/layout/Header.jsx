@@ -5,9 +5,9 @@ import User from '../../assets/user.svg';
 
 const Header = () => {
   const { t, i18n } = useTranslation();
-
+  
   const changeLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'ru' : i18n.language === 'ru' ? 'kg' : 'en';
+    const newLang = i18n.language === 'en' ? 'ru' : 'en';
     i18n.changeLanguage(newLang);
   };
 

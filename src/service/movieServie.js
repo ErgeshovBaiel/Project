@@ -1,9 +1,9 @@
 import axios from '../axios'
 
 class MovieService {
-  async fetchAllMovies () {
+  async fetchAllMovies (lng ) {
     try {
-      const { data, status } = await axios.get('discover/movie?language=ru')
+      const { data, status } = await axios.get('discover/movie?language=' + lng)
       if (status !== 200) {
         throw new Error('Failed fetching movie data')
       }
@@ -13,9 +13,9 @@ class MovieService {
     }
   }
 
-  async fetchMovieById (id) {
+  async fetchMovieById (id , lng) {
     try {
-      const { data, status } = await axios.get(`/movie/${id}?language=ru`)
+      const { data, status } = await axios.get(`/movie/${id}?language=` + lng)
       if (status !== 200) {
         throw new Error('Failed fetching movie info')
       }
@@ -42,9 +42,9 @@ class MovieService {
     }
   }
 
-  async fetchMovieGenreList () {
+  async fetchMovieGenreList (lng) {
     try {
-      const { data, status } = await axios.get('genre/movie/list?language=ru')
+      const { data, status } = await axios.get('genre/movie/list?language=' + lng)
       if (status !== 200) {
         throw new Error('Failed fetching movie genre list')
       }
@@ -54,11 +54,11 @@ class MovieService {
     }
   }
   // Новинки
-  async fetchNewMovie () {
+  async fetchNewMovie (lng) {
     try {
       const { data, status } = await axios.get(`trending/movie/week`, {
         params: {
-          language: 'ru'
+          language: lng
         }
       })
       if (!status === 200) {
@@ -71,11 +71,11 @@ class MovieService {
     }
   }
   //Популярное
-  async fetchPopularMovies () {
+  async fetchPopularMovies (lng) {
     try {
       const { data, status } = await axios.get(`movie/popular`, {
         params: {
-          language: 'ru'
+          language: lng
         }
       })
       if (!status === 200) {
@@ -88,11 +88,11 @@ class MovieService {
     }
   }
   //Смотрят сейчас
-  async fetchMovieNowWatching () {
+  async fetchMovieNowWatching (lng) {
     try {
       const { data, status } = await axios.get(`movie/now_playing`, {
         params: {
-          language: 'ru'
+          language: lng
         }
       })
       if (!status === 200) {
@@ -104,15 +104,14 @@ class MovieService {
       console.error(err)
     }
   }
-
   // recomendate
 
   //Топ 10
-  async fetchMovieTopRated () {
+  async fetchMovieTopRated (lng) {
     try {
       const { data, status } = await axios.get(`movie/top_rated`, {
         params: {
-          language: 'ru'
+          language: lng
         }
       })
       if (!status === 200) {
@@ -125,11 +124,11 @@ class MovieService {
     }
   }
   //Скоро на Cinemax
-  async fetchMovieUpComing () {
+  async fetchMovieUpComing (lng) {
     try {
       const { data, status } = await axios.get(`movie/upcoming`, {
         params: {
-          language: 'ru'
+          language: lng
         }
       })
       if (!status === 200) {
@@ -141,6 +140,7 @@ class MovieService {
       console.error(err)
     }
   }
+
   async fetchMovieTrailers(id){
     try {
                 const {data, status} = await axios.get(`movie/${id}/videos`,{

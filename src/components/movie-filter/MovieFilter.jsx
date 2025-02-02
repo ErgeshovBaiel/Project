@@ -9,7 +9,7 @@ import movieService from '../../service/movieServie';
 import { useNavigate } from 'react-router-dom';
 
 const MovieFilter = () => {
-  const { t } = useTranslation();
+  const {  t , i18n } = useTranslation();
   const navigate = useNavigate();
   const [activeBtn, setActiveBtn] = useState(null);
   const [movies, setMovies] = useState([]);
@@ -39,33 +39,33 @@ const MovieFilter = () => {
   useEffect(() => {
     fetchMovies(filterNames[0]);
     setActiveBtn(filterNames[0]);
-  }, []);
+  }, [i18n.language]);
 
   const fetchMovies = (item) => {
     setIsLoading(true);
 
     if (item === t('New')) {
-      movieService.fetchNewMovie().then(res => {
+      movieService.fetchNewMovie(i18n.language).then(res => {
         setMovies(res.results);
         setIsLoading(false);
       });
     } else if (item === t('Popular')) {
-      movieService.fetchPopularMovies().then(res => {
+      movieService.fetchPopularMovies(i18n.language).then(res => {
         setMovies(res.results);
         setIsLoading(false);
       });
     } else if (item === t('Watch Now')) {
-      movieService.fetchMovieNowWatching().then(res => {
+      movieService.fetchMovieNowWatching(i18n.language).then(res => {
         setMovies(res.results);
         setIsLoading(false);
       });
     } else if (item === t('Top 10')) {
-      movieService.fetchMovieTopRated().then(res => {
+      movieService.fetchMovieTopRated(i18n.language).then(res => {
         setMovies(res.results);
         setIsLoading(false);
       });
     } else if (item === t('Coming soon on Cinemax')) {
-      movieService.fetchMovieUpComing().then(res => {
+      movieService.fetchMovieUpComing(i18n.language).then(res => {
         setMovies(res.results);
         setIsLoading(false);
       });

@@ -11,20 +11,20 @@ import { Autoplay } from "swiper/modules";
 
 
 const CategorySection = () => {
-    const { t } = useTranslation();
+    const {  t , i18n } = useTranslation();
     const [category, setCategory] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         setIsLoading(true)
-        movieService.fetchMovieGenreList()
+        movieService.fetchMovieGenreList(i18n.language)
             .then(({ genres }) => {
                 setCategory(genres)
             })
             .finally(() => {
                 setIsLoading(false)
             })
-    }, [])
+    }, [i18n.language])
 
     if (isLoading) {
         return <Spinner />
@@ -54,7 +54,7 @@ const CategorySection = () => {
                               <div className="app-container">
                                 <div className="w-[310px] text-white  flex pl-[90px] items-start justify-center flex-col h-[170px] rounded-[10px] bg-[#1A1A1A]">
                                     <h3 className="text-[20px]">{item.name}</h3>
-                                    <p className="text-[#EF4234]">{item.id} k+ фильмов</p>
+                                    <p className="text-[#EF4234]">{item.id} k+ {t('genres')}</p>
                                 </div>
                               </div>
                               </div>

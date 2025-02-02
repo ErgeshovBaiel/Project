@@ -12,7 +12,7 @@ import Button from '../UI/Button/Button';
 import PlayIcon from '../../assets/play.svg';
 
 const HeroSection = () => {
-  const { t } = useTranslation();
+  const { t , i18n } = useTranslation();
   const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(false);
   const [bgImage, setBgImage] = useState('');
@@ -21,7 +21,7 @@ const HeroSection = () => {
   useEffect(() => {
     setLoading(true);
     movieService
-      .fetchAllMovies()
+      .fetchAllMovies(i18n.language)
       .then(res => {
         setFilms(res.results.slice(0, 5));
         setBgImage(res.results[0].backdrop_path);
@@ -29,7 +29,7 @@ const HeroSection = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [i18n.language]);
 
   if (loading) {
     return <Spinner />;

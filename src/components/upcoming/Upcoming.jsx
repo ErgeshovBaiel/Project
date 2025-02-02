@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 const UpComing = () => {
-  const { t } = useTranslation();
+  const { t , i18n } = useTranslation();
   const navigate = useNavigate()
   const [movie, setMovie] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,11 +22,11 @@ const UpComing = () => {
   useEffect(() => {
     setLoading(true);
     movieService
-      .fetchMovieUpComing()
+      .fetchMovieUpComing(i18n.language)
       .then((res) => setMovie(res.results.slice(0,5)))
       .catch((err) => console.error('Error fetching movies:', err))
       .finally(() => setLoading(false));
-  }, []);
+  }, [i18n.language]);
 
   if (loading) {
     return <Spinner />;

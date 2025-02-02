@@ -8,16 +8,16 @@ import movieService from '../../service/movieServie';
 import VideoSection from '../../components/VideoSection/VideoSection';
 
 const MovieDetailPage = () => {
-  const { t } = useTranslation(); 
+  const { t , i18n } = useTranslation(); 
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
 
   useEffect(() => {
-    movieService.fetchMovieById(movieId).then((data) => {
+    movieService.fetchMovieById(movieId , i18n.language).then((data) => {
       console.log(data);
       setMovie(data);
     });
-  }, [movieId]);
+  }, [movieId , i18n.language]);
 
   if (Object.keys(movie).length === 0) {
     return (
