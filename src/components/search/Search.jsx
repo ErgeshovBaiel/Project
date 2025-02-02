@@ -1,25 +1,52 @@
-import Input from '../UI/Input/Input'
-import { useTranslation } from 'react-i18next'
-import { CiSearch } from 'react-icons/ci'
+import { useTranslation } from 'react-i18next';
+import search from "../../assets/search.svg"
 
 const Search = () => {
-  const { t, i18n } = useTranslation()
-  return (
-    <div className='bg-[#131416] text-white pt-[50px] pb-[150px]'>
-      <div className='app-container'>
-        <h3 className='text-[24px] mb-[15px] font-[Montserrat] font-medium'>
-        {t('website')}
-        </h3>
-        <p className='w-[385px] mb-[60px] text-[#979797] font-[Montserrat]  text-[16px]'>
-        {t('website-P')}
-        </p>
-        <div className='flex items-center rounded-[10px] pr-[20px] bg-[#1A1A1A]'>
-          <Input hintText={t('search')} />
-          <CiSearch color='#EF4234' className='text-[26px]' />
-        </div>
-      </div>
-    </div>
-  )
-}
+  const { t } = useTranslation();
 
-export default Search
+  return (
+    <div className='app-container'>
+      <div style={{
+        width: '344px',
+        height: '64px',
+        padding: '12px 16px',
+        gap: '16px',
+        borderRadius: '12px',
+        border: '1px solid #323B54',
+        display: 'flex',
+        alignItems: 'center',
+        marginTop: "20px",
+      }}>
+        <img width={24} height={24} src={search} alt="" className=' ml-[10px]'/>
+        <input
+          style={{
+            width: '100%',
+            height: '100%',
+            fontFamily: 'Poppins',
+            fontSize: '14px',
+            fontWeight: '400',
+            lineHeight: '16px',
+            color: '#475069',
+            border: 'none',
+            outline: 'none',
+            backgroundColor: 'transparent',
+            marginLeft: '10px',
+          }}
+          type="text"
+          placeholder={t('Search Movies or TV Shows')}
+          className="placeholder-color font-[Poppins]"
+        />
+      </div>
+
+      <style>
+        {`
+          .placeholder-color::placeholder {
+            color: #475069;
+          }
+        `}
+      </style>
+    </div>
+  );
+};
+
+export default Search;

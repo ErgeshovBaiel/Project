@@ -53,7 +53,7 @@ class MovieService {
       console.log(error)
     }
   }
-  // Новинки
+  // All
   async fetchNewMovie () {
     try {
       const { data, status } = await axios.get(`trending/movie/week`, {
@@ -70,7 +70,7 @@ class MovieService {
       console.error(err)
     }
   }
-  //Популярное
+  // Movies
   async fetchPopularMovies () {
     try {
       const { data, status } = await axios.get(`movie/popular`, {
@@ -87,27 +87,9 @@ class MovieService {
       console.error(err)
     }
   }
-  //Смотрят сейчас
-  async fetchMovieNowWatching () {
-    try {
-      const { data, status } = await axios.get(`movie/now_playing`, {
-        params: {
-          language: 'ru'
-        }
-      })
-      if (!status === 200) {
-        throw new Error('Error movie fetching  popular movie  list')
-      }
-      console.log(data)
-      return data
-    } catch (err) {
-      console.error(err)
-    }
-  }
 
-  // recomendate
 
-  //Топ 10
+  // TV Shows
   async fetchMovieTopRated () {
     try {
       const { data, status } = await axios.get(`movie/top_rated`, {
@@ -124,23 +106,8 @@ class MovieService {
       console.error(err)
     }
   }
-  //Скоро на Cinemax
-  async fetchMovieUpComing () {
-    try {
-      const { data, status } = await axios.get(`movie/upcoming`, {
-        params: {
-          language: 'ru'
-        }
-      })
-      if (!status === 200) {
-        throw new Error('Error movie fetching  popular movie  list')
-      }
-      console.log(data)
-      return data
-    } catch (err) {
-      console.error(err)
-    }
-  }
+
+  
   async fetchMovieTrailers(id){
     try {
                 const {data, status} = await axios.get(`movie/${id}/videos`,{

@@ -1,17 +1,13 @@
-import CategorySection from '../../components/category/CategorySection'
-import HeroSection from '../../components/hero/HeroSection'
+import MaileHereko from '../../components/mailehereko/MaileHereko'
 import MovieFilter from '../../components/movie-filter/MovieFilter'
 import Search from '../../components/search/Search'
-import Upcoming from '../../components/upcoming/Upcoming'
 
 const HomePage = () => {
   return (
     <div>
-      <HeroSection />
+      <MaileHereko />
       <Search />
-      <CategorySection/>
       <MovieFilter />
-      <Upcoming />
     </div>
   )
 }

@@ -1,27 +1,40 @@
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 import Logo from '../../assets/logo.svg';
-import User from '../../assets/user.svg';
+import Icon from "../../assets/icon.svg"
 
 const Header = () => {
   const { t, i18n } = useTranslation();
 
   const changeLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'ru' : i18n.language === 'ru' ? 'kg' : 'en';
+    const newLang = i18n.language === 'en' ? 'ru' : 'en';
     i18n.changeLanguage(newLang);
   };
 
   return (
     <div className='flex justify-center'>
-      <div className='px-[50px] bg-transparent z-30 fixed text-white flex justify-between pt-[35px] w-[1300px] mx-auto'>
+      <div className='app-container  z-30 fixed
+       text-white flex justify-between pt-[25px] mx-auto'>
         <div className='flex items-center gap-[70px]'>
-          <img src={Logo} alt='' />
+          <NavLink to={'/'}><img  src={Logo} alt='' /></NavLink>
+
+          
           <div className='font-medium text-xl text-[#FFFFFF]'>
-            <NavLink to={'/'}>{t('home')}</NavLink>
+            <div className="flex ml-[680px] mt-[5px]">
+
+            <div className="flex  gap-[40px]">
+            <p className="w-[59px] h-[24px] font-[Poppins] text-base font-semibold text-[#A8AEBF]">Movies</p>
+            <p className="w-[80px] h-[24px] font-[Poppins] text-base font-semibold text-[#A8AEBF]">TV Shows</p>
+            <p className="w-[101px] h-[24px] font-[Poppins] text-base font-semibold text-[#A8AEBF] ml-[5px]">Suggest me</p>
+            </div>
+            <img width={16} height={16} className="ml-[8px] " src={Icon} alt="" />
+        </div>
           </div>
+          
+   
         </div>
 
-        <div className='flex items-center gap-[70px]'>
+        <div className='pt-[30px]'>
           <p
             className='font-medium text-[19px] cursor-pointer'
             onClick={changeLanguage}
@@ -29,9 +42,6 @@ const Header = () => {
             {t('language')}
           </p>
 
-          <p>
-            <img src={User} alt='' />
-          </p>
         </div>
       </div>
     </div>
