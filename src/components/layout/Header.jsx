@@ -5,7 +5,7 @@ import Icon from "../../assets/icon.svg"
 
 const Header = () => {
   const { t, i18n } = useTranslation();
-
+  
   const changeLanguage = () => {
     const newLang = i18n.language === 'en' ? 'ru' : 'en';
     i18n.changeLanguage(newLang);
