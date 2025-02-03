@@ -95,10 +95,10 @@ const MovieFilter = () => {
                   className="flex flex-col items-center justify-center cursor-pointer"
                 >
                   <button
-                    className="w-[60px] h-[40px] p-[4px_8px] absolute rounded-[8px] text-[#FFBD6D] bg-[#000000A6] flex items-center gap-1"
-                    style={{ top: '8px', right: '8px' }}
-                  >
-                    <img src={Star} alt="star" />
+                    className="w-[60px] h-[40px] p-[4px_8px] absolute rounded-[8px]
+                     text-[#FFBD6D] bg-[#000000A6] flex items-center gap-1 mr-[195px] mb-[404px]">
+                    <img src={Star} alt="" />
+                    {formatVoteAverage(film.vote_average)}
                   </button>
 
                   <div className="w-[282px] h-[480px] rounded-[12px] bg-[#20283ECC]">
@@ -108,8 +108,7 @@ const MovieFilter = () => {
                       height="400"
                       src={imgUrl + film.poster_path}
                       alt={film.title}
-                      />
-                      {formatVoteAverage(film.vote_average)}
+                    />
                     <h2 className="line-clamp-1 text-[#EBEEF5] mt-6 text-[18px] font-semibold ml-[16px]">
                       {film.title ? film.title.slice(0, 20) : ''}
                     </h2>

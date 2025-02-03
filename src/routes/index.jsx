@@ -1,6 +1,8 @@
 import Layout from "../components/layout/Layout";
 import HomePage from "../pages/home-page/HomePage";
 import MovieDetailPage from "../pages/movie-detail-page/MovieDetailPage";
+import MoviesPage from "../pages/movies-page/MoviesPage";  
+import TvShowsPage from "../pages/tv-shows-page/TvShowsPage"
 
 export const menu = [
     {
@@ -17,12 +19,12 @@ export const menu = [
                 element: <MovieDetailPage/>
             },
             {
-                path: "/auth",
-                element: null
+                path: "/movies", 
+                element: <MoviesPage /> 
             },
             {
-                path: "/profile",
-                element: null
+                path: "/tv shows",
+                element: <TvShowsPage />
             },
         ]
     },
