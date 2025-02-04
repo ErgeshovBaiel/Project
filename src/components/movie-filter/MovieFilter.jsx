@@ -12,7 +12,7 @@ const MovieFilter = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  const filterNames = [t('All'), t('Movies'), t('TV Shows')];
+  const filterNames = [t('All'), t('Movies'), t('Top-10')];
 
   useEffect(() => {
     const handleResize = () => {
@@ -43,7 +43,7 @@ const MovieFilter = () => {
         setMovies(res.results);
         setIsLoading(false);
       });
-    } else if (item === t('TV Shows')) {
+    } else if (item === t('Top-10')) {
       movieService.fetchMovieTopRated(i18n.language).then((res) => {
         setMovies(res.results);
         setIsLoading(false);
