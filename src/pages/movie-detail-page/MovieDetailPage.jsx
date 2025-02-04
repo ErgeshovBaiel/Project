@@ -66,24 +66,26 @@ const MovieDetailPage = () => {
           }}
         ></div>
 
-        <div className="w-[993px] mx-auto pt-[165px] pb-[105px] flex justify-between items-center">
-          <div>
+        <div className=" w-[993px] mx-auto pt-[165px] pb-[105px] flex justify-between items-center">
+          <div className='mr-[30px]'>
             <img
-              className="w-[720px] h-[720px] rounded-[24px]"
+              className="rounded-[24px] "
               src={imgUrl + movie.poster_path}
               alt={movie.title}
             />
           </div>
 
           <div className="movie-content w-[630px] text-white mt-[70px]">
-            <h3 className="text-5xl font-medium font-[Montserrat] my-8 mt-[-80px]">
+            <h3 className=" text-5xl font-medium font-[Montserrat] my-8 mt-[-80px]">
               {movie.title}
             </h3>
 
-            <div className="flex gap-5 w-[890px] text-xl font-medium font-[Montserrat] my-5">
-              <span>{movie.release_date}</span>
-              <p>{formatBudget(movie.budget)}</p>
-              <p>{formatCountry(movie.origin_country)}</p>
+            <div className="mr-[80px] flex gap-5 w-[300px] text-xl font-medium font-[Montserrat] my-5">
+              <span className=''>{movie.release_date}</span>
+              <p className=''>{formatBudget(movie.budget)}</p>
+              <p className=''>{formatCountry(movie.origin_country)}</p>
+            
+              
 
               <p className="flex gap-5">
                 {movie.genres.map((genre, index) => (
