@@ -1,50 +1,33 @@
-import { useTranslation } from 'react-i18next';
-import search from "../../assets/search.svg"
+import { useState } from 'react';
+import search from '../../assets/search.svg';
 
-const Search = () => {
-  const { t } = useTranslation();
+const Search = ({ onSearch }) => {
+  const [query, setQuery] = useState('');
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setQuery(value);
+    onSearch(value); 
+  };
 
   return (
-    <div className='app-container'>
-      <div style={{
-        width: '344px',
-        height: '64px',
-        padding: '12px 16px',
-        gap: '16px',
-        borderRadius: '12px',
-        border: '1px solid #323B54',
-        display: 'flex',
-        alignItems: 'center',
-        marginTop: "20px",
-      }}>
-        <img width={24} height={24} src={search} alt="" className=' ml-[10px]'/>
+    <div className="app-container">
+      <div className="w-[344px] h-[64px] p-3 gap-4 rounded-xl border border-[#323B54] flex items-center mt-8">
+        <img width={24} height={24} src={search} alt="" className="ml-[10px]" />
         <input
           style={{
-            width: '100%',
-            height: '100%',
-            fontFamily: 'Poppins',
-            fontSize: '14px',
+            fontFamily: 'Poppins, sans-serif',
+            fontSize: '18px',
             fontWeight: '400',
-            lineHeight: '16px',
             color: '#475069',
-            border: 'none',
-            outline: 'none',
-            backgroundColor: 'transparent',
-            marginLeft: '10px',
           }}
+          className="w-full h-full border-none outline-none  bg-transparent ml-[10px] placeholder-[#475069]"
           type="text"
-          placeholder={t('Search Movies or TV Shows')}
-          className="placeholder-color font-[Poppins]"
+          value={query}
+          onChange={handleInputChange}
+          placeholder="Search Movies or TV Shows"
         />
       </div>
-
-      <style>
-        {`
-          .placeholder-color::placeholder {
-            color: #475069;
-          }
-        `}
-      </style>
     </div>
   );
 };
